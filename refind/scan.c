@@ -1416,7 +1416,9 @@ static BOOLEAN IsValidTool(IN REFIT_VOLUME *BaseVolume, CHAR16 *PathName) {
         BaseVolume->PartName ? BaseVolume->PartName : BaseVolume->VolName);
     if (gHiddenTools == NULL) {
         DontScanTools = ReadHiddenTags(L"HiddenTools");
-        gHiddenTools = StrDuplicate(DontScanTools);
+        if (DontScanTools != NULL) {
+            gHiddenTools = StrDuplicate(DontScanTools);
+        }
     } else {
         DontScanTools = StrDuplicate(gHiddenTools);
     }
